@@ -36,3 +36,13 @@ def move():
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
+
+
+#example of python function
+#def test_function(test_variable):
+    #test_variable= test_variable + 1 <== equals 13
+    # return test_variable
+
+
+    #print(test_variable)<-- this actually will show the item you requested
+    # return only stores it 
