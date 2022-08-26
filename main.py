@@ -16,6 +16,7 @@
 import os
 import logging
 import random
+from turtle import forward, left
 from flask import Flask, request
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
@@ -23,6 +24,12 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
+
+T = Throw
+F = Forward
+L = Turn Left
+R = Turn Right
+
 
 @app.route("/", methods=['GET'])
 def index():
@@ -33,6 +40,7 @@ def move():
     request.get_data()
     logger.info(request.json)
     return moves[random.randrange(len(moves))]
+    print(F)
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
