@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from asyncio import exceptions
 import os
 import logging
 import random
@@ -25,11 +26,6 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
 
-T = Throw
-F = Forward
-L = Turn Left
-R = Turn Right
-
 
 @app.route("/", methods=['GET'])
 def index():
@@ -37,10 +33,12 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    request.get_data()
-    logger.info(request.json)
-    return moves[random.randrange(len(moves))]
-    print(T)
+    try:
+        request.get_data()
+        logger.info(request.json)
+        return moves[random.randrange(len(moves))]
+    except Exception:
+        logging.error("not working code")
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
